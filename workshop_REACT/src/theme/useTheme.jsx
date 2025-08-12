@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext({ theme: 'light', toggleTheme: () => {} });
 
-export function ThemeProvider({ children }) {
+function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') || 'light';
@@ -26,6 +26,8 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export function useTheme() {
+function useTheme() {
   return useContext(ThemeContext);
 }
+
+export { ThemeProvider, useTheme };
